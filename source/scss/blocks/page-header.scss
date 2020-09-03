@@ -5,6 +5,10 @@
   right: 0;
   padding: 2.7rem 0;
   z-index: 10;
+  opacity: 0;
+  transition-property: opacity;
+  transition-duration: 500ms;
+  transition-timing-function: $customEasing;
 
   @media (min-width: $stop-scaling) {
     padding: 27px 0;
@@ -35,6 +39,11 @@
   padding: 1rem 0;
   width: 10rem;
   color: $c-light;
+  opacity: 0;
+  transform: translate(-50%, 0);
+  transition-property: opacity, transform;
+  transition-duration: 500ms;
+  transition-timing-function: $customEasing;
 
   @media (min-width: $stop-scaling) {
     top: -5px;
@@ -130,6 +139,10 @@
 .page-header__nav {
   display: flex;
   align-items: center;
+  transform: translateX(10%);
+  transition-property: transform;
+  transition-duration: 500ms;
+  transition-timing-function: $customEasing;
 
   @media (max-width: $tablet) and (orientation: portrait) {
     position: fixed;
@@ -308,5 +321,21 @@
   @media (max-width: $mobile) and (orientation: landscape) {
     margin-left: 0;
     width: 100%;
+  }
+}
+
+.pageLoaded {
+  
+  .page-header {
+    opacity: 1;
+  }
+
+  .page-header__logo {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+
+  .page-header__nav {
+    transform: translateX(0);
   }
 }
