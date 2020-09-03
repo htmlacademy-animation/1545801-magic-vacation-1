@@ -5,6 +5,11 @@
     .social-block__list {
       opacity: 1;
       pointer-events: auto;
+
+      .social-block__link {
+        // animation: fadeInTop 500ms;
+        animation-name: fadeInTop;
+      }
     }
   }
 }
@@ -17,6 +22,7 @@
   height: 4rem;
   color: $c-dark;
   border-radius: 50%;
+  transition: color 500ms;
 
   @media (max-width: $tablet) and (orientation: portrait) {
     display: none;
@@ -35,6 +41,8 @@
     background-color: $c-light;
     border: 2px solid $c-light;
     z-index: -1;
+    transition-property: width, height, background-color;
+    transition-duration: 500ms;
   }
 
   svg {
@@ -65,6 +73,11 @@
     & + .social-block__list {
       opacity: 1;
       pointer-events: auto;
+
+      & .social-block__link {
+        animation-name: fadeInTop;
+        // animation: fadeInTop 500ms;
+      }
     }
   }
 
@@ -89,6 +102,8 @@
   margin-top: 1.5rem;
   opacity: 0;
   pointer-events: none;
+  // transition-property: opacity;
+  // transition-duration: 200ms;
 
   @media (min-width: $stop-scaling) {
     margin-top: 15px;
@@ -141,6 +156,7 @@
     opacity: 1;
     pointer-events: auto;
   }
+  
 
   li {
     flex: none;
@@ -168,6 +184,12 @@
   color: $c-light;
   border: 2px solid transparent;
   border-radius: 50%;
+  animation-duration: 500ms;
+  animation-name: none;
+  animation-fill-mode: forwards;
+  opacity: 0;
+  transition-property: color;
+  transition-duration: 500ms;
 
   @media (min-width: $stop-scaling) {
     width: 40px;
@@ -207,6 +229,7 @@
   }
 
   &--fb {
+    // transition-delay: 50ms;
     svg {
       width: 0.8rem;
       height: 1.7rem;
@@ -219,6 +242,8 @@
   }
 
   &--insta {
+    // transition-delay: 100ms;
+    animation-delay: 100ms;
     svg {
       width: 1.5rem;
       height: 1.5rem;
@@ -231,6 +256,8 @@
   }
 
   &--vk {
+    // transition-delay: 200ms;
+    animation-delay: 200ms;
     svg {
       width: 1.7rem;
       height: 1rem;

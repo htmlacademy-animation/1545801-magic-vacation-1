@@ -39,6 +39,7 @@
   &:nth-child(even) {
     .slider__item-text {
       align-self: flex-end;
+      transition-delay: 600ms;
 
       @media (max-width: $mobile) and (orientation: landscape) {
         align-self: flex-start;
@@ -96,6 +97,10 @@
   max-width: 34rem;
   font-size: 1.8rem;
   line-height: 2rem;
+
+  transform: translateX(20%);
+  opacity: 0;
+  transition: opacity 500ms 400ms, transform 500ms 400ms;
 
   @media (min-width: $stop-scaling) {
     margin-top: 36px;
@@ -274,5 +279,12 @@
       height: 0.4rem;
       background-color: $c-light;
     }
+  }
+}
+
+.swiper-slide-active, .swiper-slide-next {
+  .slider__item-text {
+    opacity: 1;
+    transform: translateX(0);
   }
 }
