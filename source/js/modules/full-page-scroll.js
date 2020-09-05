@@ -1,11 +1,15 @@
 import throttle from 'lodash/throttle';
 
+const STORY_SCREEN_ID = 1;
+const PRIZES_SCREEN_ID = 2;
+
 export default class FullPageScroll {
   constructor() {
     this.THROTTLE_TIMEOUT = 2000;
 
     this.screenElements = document.querySelectorAll(`.screen:not(.screen--result)`);
     this.menuElements = document.querySelectorAll(`.page-header__menu .js-menu-link`);
+    this.bgOverlap = document.querySelector('.background-overlap');
 
     this.activeScreen = 0;
     this.onScrollHandler = this.onScroll.bind(this);
@@ -29,6 +33,7 @@ export default class FullPageScroll {
 
   onUrlHashChanged() {
     const newIndex = Array.from(this.screenElements).findIndex((screen) => location.hash.slice(1) === screen.id);
+    this.prevActiveScreen = this.activeScreen;
     this.activeScreen = (newIndex < 0) ? 0 : newIndex;
     this.changePageDisplay();
   }
@@ -46,6 +51,13 @@ export default class FullPageScroll {
     });
     this.screenElements[this.activeScreen].classList.remove(`screen--hidden`);
     this.screenElements[this.activeScreen].classList.add(`active`);
+
+    if (this.prevActiveScreen === STORY_SCREEN_ID && this.activeScreen === PRIZES_SCREEN_ID) {
+      this.bgOverlap.classList.add('active');
+
+    } else if (this.bgOverlap.classList.contains('active')) {
+      this.bgOverlap.classList.remove('active');
+    }
   }
 
   changeActiveMenuItem() {
@@ -69,6 +81,7 @@ export default class FullPageScroll {
   }
 
   reCalculateActiveScreenPosition(delta) {
+    this.prevActiveScreen = this.activeScreen;
     if (delta > 0) {
       this.activeScreen = Math.min(this.screenElements.length - 1, ++this.activeScreen);
     } else {
