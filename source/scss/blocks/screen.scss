@@ -306,9 +306,9 @@
   }
 }
 
-.screen--prizes {
-  background-color: $c-dark;
-}
+// .screen--prizes {
+  // background-color: $c-dark;
+// }
 
 .screen--game {
   position: relative;
@@ -365,5 +365,19 @@
   .screen__footer {
     opacity: 1;
     transform: translate(0, 0);
+  }
+}
+
+.background-overlap {
+  left: 0;
+  bottom: 0;
+  position: fixed;
+  width: 100%;
+  height: 0%;
+  background-color: $c-dark;
+
+  &.active {
+    transition: height 500ms;
+    height: 100%;
   }
 }
