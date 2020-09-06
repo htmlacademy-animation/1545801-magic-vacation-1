@@ -185,7 +185,6 @@
   p {
     margin: 0;
     opacity: 0;
-    animation-name: fadeInLeft;
     animation-duration: $rulesDuration + ms;
     animation-fill-mode: forwards;
 
@@ -201,24 +200,12 @@
 
   .rules__item:nth-child(#{$rNum}) {
     & p {
+      animation-name: fadeInLeft;
       animation-delay: $textDelay + ms;
     }
     
     &::before {
       animation-delay: ($rulesIncrementDelay * $rNum) + ms;
-    }
-  }
-
-  @if $rNum == $numberOfRules {
-    $linkDelay: $textDelay + $rulesDuration;
-    .rules__link {
-      &::before {
-        // opacity: 1;
-        animation-delay: $linkDelay + ms;
-      }
-      & p {
-        animation-delay: $linkDelay + 250 + ms;
-      }
     }
   }
 }
@@ -234,9 +221,6 @@
     right: 0;
     width: 0;
     transform: translateY(-50%);
-    animation-name: increaseWidth, animateOpacity;
-    animation-fill-mode: forwards;
-    animation-duration: $rulesLinkDuration + ms, $rulesLinkDuration * 0.5 + ms;
     opacity: 0;
   }
 
@@ -263,9 +247,22 @@
   p {
     margin: 0;
     opacity: 0;
+  }
+}
+
+.rules__link-active {
+
+  p {
     animation-name: animateOpacity;
     animation-duration: 500ms;
     animation-fill-mode: forwards;
+    animation-delay: $rulesLinkDuration + ms;
+  }
+
+  &::before {
+    animation-name: increaseWidth, animateOpacity;
+    animation-fill-mode: forwards;
+    animation-duration: $rulesLinkDuration + ms;
   }
 }
 
