@@ -2614,7 +2614,6 @@ img {
   .rules__item p {
     margin: 0;
     opacity: 0;
-    animation-name: fadeInLeft;
     animation-duration: 400ms;
     animation-fill-mode: forwards; }
     @media (max-width: 1024px) and (orientation: portrait) {
@@ -2622,34 +2621,32 @@ img {
         min-height: calc(1.4rem * 2.2); } }
 
 .rules__item:nth-child(1) p {
+  animation-name: fadeInLeft;
   animation-delay: 400ms; }
 
 .rules__item:nth-child(1)::before {
   animation-delay: 200ms; }
 
 .rules__item:nth-child(2) p {
+  animation-name: fadeInLeft;
   animation-delay: 600ms; }
 
 .rules__item:nth-child(2)::before {
   animation-delay: 400ms; }
 
 .rules__item:nth-child(3) p {
+  animation-name: fadeInLeft;
   animation-delay: 800ms; }
 
 .rules__item:nth-child(3)::before {
   animation-delay: 600ms; }
 
 .rules__item:nth-child(4) p {
+  animation-name: fadeInLeft;
   animation-delay: 1000ms; }
 
 .rules__item:nth-child(4)::before {
   animation-delay: 800ms; }
-
-.rules__link::before {
-  animation-delay: 1400ms; }
-
-.rules__link p {
-  animation-delay: 1650ms; }
 
 .rules__link {
   position: absolute;
@@ -2661,9 +2658,6 @@ img {
     right: 0;
     width: 0;
     transform: translateY(-50%);
-    animation-name: increaseWidth, animateOpacity;
-    animation-fill-mode: forwards;
-    animation-duration: 400ms, 200ms;
     opacity: 0; }
   @media (min-width: 2000px) {
     .rules__link {
@@ -2683,10 +2677,18 @@ img {
       right: 1.5rem; } }
   .rules__link p {
     margin: 0;
-    opacity: 0;
-    animation-name: animateOpacity;
-    animation-duration: 500ms;
-    animation-fill-mode: forwards; }
+    opacity: 0; }
+
+.rules__link-active p {
+  animation-name: animateOpacity;
+  animation-duration: 500ms;
+  animation-fill-mode: forwards;
+  animation-delay: 400ms; }
+
+.rules__link-active::before {
+  animation-name: increaseWidth, animateOpacity;
+  animation-fill-mode: forwards;
+  animation-duration: 400ms; }
 
 @keyframes showRulesNumbers {
   0% {
