@@ -10,12 +10,32 @@
   }
 }
 
-@keyframes animationOfIncreasingWidth {
+@keyframes decreaseWidth {
   0% {
     width: 0;
   }
+}
 
+@keyframes increaseWidth {
   100% {
     width: 100%;
+  }
+}
+
+@keyframes fadeInLeft {
+  0% {
+    opacity: 0;    
+    transform: translateX(30%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes animateOpacity {
+  100% {
+    opacity: 1;
   }
 }
