@@ -73,7 +73,7 @@
   border: 0;
   border-radius: 3rem;
   outline: none;
-  animation: animationOfIncreasingWidth 500ms;
+  animation: decreaseWidth 500ms;
 
   &:focus {
     border: 1px solid $c-purple;
