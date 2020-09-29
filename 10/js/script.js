@@ -10355,8 +10355,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return FullPageScroll; });
 /* harmony import */ var lodash_throttle__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash/throttle */ "./node_modules/lodash/throttle.js");
 /* harmony import */ var lodash_throttle__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash_throttle__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _intro__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./intro */ "./source/js/modules/intro.js");
 
 
+
+const INTRO_SCREEN_ID = 0;
 const STORY_SCREEN_ID = 1;
 const PRIZES_SCREEN_ID = 2;
 
@@ -10415,6 +10418,11 @@ class FullPageScroll {
     } else if (this.bgOverlap.classList.contains('active')) {
       this.bgOverlap.classList.remove('active');
     }
+
+    if (this.activeScreen === INTRO_SCREEN_ID) {
+      Object(_intro__WEBPACK_IMPORTED_MODULE_1__["destroyLettersAnimations"])();
+      setTimeout(_intro__WEBPACK_IMPORTED_MODULE_1__["runLettersAnimations"], 300);
+    }
   }
 
   changeActiveMenuItem() {
@@ -10454,30 +10462,38 @@ class FullPageScroll {
 /*!************************************!*\
   !*** ./source/js/modules/intro.js ***!
   \************************************/
-/*! exports provided: default */
+/*! exports provided: runLettersAnimations, destroyLettersAnimations */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "runLettersAnimations", function() { return runLettersAnimations; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "destroyLettersAnimations", function() { return destroyLettersAnimations; });
 /* harmony import */ var _accent_typography_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./accent-typography.js */ "./source/js/modules/accent-typography.js");
 
 
-/* harmony default export */ __webpack_exports__["default"] = (function() {
-  const title = '.intro__title';
-  const titleAccentTypography = new _accent_typography_js__WEBPACK_IMPORTED_MODULE_0__["default"](title, 500, 'active-accent-typography', 'transform');
-  const date = '.intro__date';
-  const dateAccentTypography = new _accent_typography_js__WEBPACK_IMPORTED_MODULE_0__["default"](date, 500, 'active-accent-typography', 'transform');
-  
-  setTimeout(() => {
-    document.querySelector(title).style.opacity = 1;
-    document.querySelector(date).style.opacity = 1;
+const INTRO_TITLE_CLASS = '.intro__title';
+const INTRO_DATE_CLASS = '.intro__date';
+const texts = [];
 
-    titleAccentTypography.runAnimation();
-    dateAccentTypography.runAnimation();
-  }, 500);
-
-  document.body.classList.add('pageLoaded');
+[
+  INTRO_TITLE_CLASS,
+  INTRO_DATE_CLASS,
+].forEach(textClass => {
+  texts.push(new _accent_typography_js__WEBPACK_IMPORTED_MODULE_0__["default"](textClass, 500, 'active-accent-typography', 'transform'));
 });
+
+function runLettersAnimations() {
+  texts.forEach(text => {
+    text.runAnimation();
+  });
+}
+
+function destroyLettersAnimations() {
+  texts.forEach(text => {
+    text.destroyAnimation();
+  });
+}
 
 
 /***/ }),
@@ -10750,9 +10766,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_social_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./modules/social.js */ "./source/js/modules/social.js");
 /* harmony import */ var _modules_rules_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./modules/rules.js */ "./source/js/modules/rules.js");
 /* harmony import */ var _modules_full_page_scroll__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./modules/full-page-scroll */ "./source/js/modules/full-page-scroll.js");
-/* harmony import */ var _modules_intro_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./modules/intro.js */ "./source/js/modules/intro.js");
 // modules
-
 
 
 
@@ -10778,7 +10792,9 @@ Object(_modules_rules_js__WEBPACK_IMPORTED_MODULE_8__["default"])();
 const fullPageScroll = new _modules_full_page_scroll__WEBPACK_IMPORTED_MODULE_9__["default"]();
 fullPageScroll.init();
 
-window.addEventListener('load', _modules_intro_js__WEBPACK_IMPORTED_MODULE_10__["default"]);
+window.addEventListener('load', () => {
+  document.body.classList.add('pageLoaded');
+});
 
 
 /***/ }),

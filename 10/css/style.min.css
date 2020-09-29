@@ -1581,7 +1581,6 @@ img {
 
 .intro__title {
   margin: 0;
-  opacity: 0;
   max-width: 101rem;
   text-transform: uppercase;
   font-family: "Radical", "Arial", sans-serif;
@@ -1684,7 +1683,6 @@ img {
 
 .intro__date {
   margin: 0 0 0 -0.5rem;
-  opacity: 0;
   font-family: "Radical", "Arial", sans-serif;
   font-weight: 400;
   font-size: 4.8rem;
