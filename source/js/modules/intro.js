@@ -1,18 +1,24 @@
 import AccentTypographyBuild from './accent-typography.js';
 
-export default function() {
-  const title = '.intro__title';
-  const titleAccentTypography = new AccentTypographyBuild(title, 500, 'active-accent-typography', 'transform');
-  const date = '.intro__date';
-  const dateAccentTypography = new AccentTypographyBuild(date, 500, 'active-accent-typography', 'transform');
-  
-  setTimeout(() => {
-    document.querySelector(title).style.opacity = 1;
-    document.querySelector(date).style.opacity = 1;
+const INTRO_TITLE_CLASS = '.intro__title';
+const INTRO_DATE_CLASS = '.intro__date';
+const texts = [];
 
-    titleAccentTypography.runAnimation();
-    dateAccentTypography.runAnimation();
-  }, 500);
+[
+  INTRO_TITLE_CLASS,
+  INTRO_DATE_CLASS,
+].forEach(textClass => {
+  texts.push(new AccentTypographyBuild(textClass, 500, 'active-accent-typography', 'transform'));
+});
 
-  document.body.classList.add('pageLoaded');
+export function runLettersAnimations() {
+  texts.forEach(text => {
+    text.runAnimation();
+  });
+}
+
+export function destroyLettersAnimations() {
+  texts.forEach(text => {
+    text.destroyAnimation();
+  });
 }

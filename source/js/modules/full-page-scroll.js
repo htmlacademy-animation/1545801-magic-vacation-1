@@ -1,5 +1,10 @@
 import throttle from 'lodash/throttle';
+import {
+  runLettersAnimations,
+  destroyLettersAnimations,
+} from './intro';
 
+const INTRO_SCREEN_ID = 0;
 const STORY_SCREEN_ID = 1;
 const PRIZES_SCREEN_ID = 2;
 
@@ -57,6 +62,11 @@ export default class FullPageScroll {
 
     } else if (this.bgOverlap.classList.contains('active')) {
       this.bgOverlap.classList.remove('active');
+    }
+
+    if (this.activeScreen === INTRO_SCREEN_ID) {
+      destroyLettersAnimations();
+      setTimeout(runLettersAnimations, 300);
     }
   }
 

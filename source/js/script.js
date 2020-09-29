@@ -9,7 +9,6 @@ import form from './modules/form.js';
 import social from './modules/social.js';
 import rules from './modules/rules.js';
 import FullPageScroll from './modules/full-page-scroll';
-import intro from './modules/intro.js';
 
 // init modules
 mobileHeight();
@@ -25,4 +24,6 @@ rules();
 const fullPageScroll = new FullPageScroll();
 fullPageScroll.init();
 
-window.addEventListener('load', intro);
+window.addEventListener('load', () => {
+  document.body.classList.add('pageLoaded');
+});

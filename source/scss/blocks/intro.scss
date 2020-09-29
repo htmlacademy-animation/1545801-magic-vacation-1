@@ -25,15 +25,12 @@
 
 .intro__title {
   margin: 0;
-  opacity: 0;
-  // max-width: 99rem;
   max-width: 101rem;
   text-transform: uppercase;
   font-family: $font-alt;
   font-weight: 400;
   font-size: 12rem;
   line-height: 0.906;
-  // line-height: 0.95;
   letter-spacing: -0.04em;
 
   @media (min-width: $stop-scaling) {
@@ -155,7 +152,6 @@
 
 .intro__date {
   margin: 0 0 0 -0.5rem;
-  opacity: 0;
   font-family: $font-alt;
   font-weight: 400;
   font-size: 4.8rem;
@@ -170,9 +166,7 @@
 
 .text__word {
   display: inline-block;
-  // margin: 0 5px;
   padding: 0 5px 0 0;
-  // padding: 18px 5px 0 0;
   overflow: hidden;
   vertical-align: -30%;
 }
