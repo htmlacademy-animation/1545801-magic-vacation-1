@@ -25,7 +25,7 @@
 
 .intro__title {
   margin: 0;
-  max-width: 99rem;
+  max-width: 101rem;
   text-transform: uppercase;
   font-family: $font-alt;
   font-weight: 400;
@@ -162,4 +162,20 @@
     margin: 0 0 0 -5px;
     font-size: 48px;
   }
+}
+
+.text__word {
+  display: inline-block;
+  padding: 0 5px 0 0;
+  overflow: hidden;
+  vertical-align: -30%;
+}
+
+.text__word > span {
+  transform: translate3d(0, 140%, 0);
+  display: inline-block;
+}
+
+.intro__title.active-accent-typography .text__word > span, .intro__date.active-accent-typography .text__word > span {
+  transform: translate3d(0, 20%, 0);
 }
