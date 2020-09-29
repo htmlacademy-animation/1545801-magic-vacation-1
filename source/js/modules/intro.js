@@ -7,6 +7,9 @@ export default function() {
   const dateAccentTypography = new AccentTypographyBuild(date, 500, 'active-accent-typography', 'transform');
   
   setTimeout(() => {
+    document.querySelector(title).style.opacity = 1;
+    document.querySelector(date).style.opacity = 1;
+
     titleAccentTypography.runAnimation();
     dateAccentTypography.runAnimation();
   }, 500);

@@ -20,8 +20,9 @@ export default class AccentTypographyBuild {
   createElement(letter) {
     const span = document.createElement(`span`);
     span.textContent = letter;
+    this._timeOffset = this.randomInteger(0, 500);
     span.style.transition = `${this._property} ${this._timer}ms ease ${this._timeOffset}ms`;
-    this._timeOffset += 20;
+    // this._timeOffset += 40;
     return span;
   }
   
@@ -56,5 +57,10 @@ export default class AccentTypographyBuild {
 
   destroyAnimation() {
     this._element.classList.remove(this._classForActivate);
+  }
+
+  randomInteger(min, max) {
+    let rand = min + Math.random() * (max + 1 - min);
+    return Math.floor(rand);
   }
 }
