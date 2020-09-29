@@ -10139,8 +10139,9 @@ class AccentTypographyBuild {
   createElement(letter) {
     const span = document.createElement(`span`);
     span.textContent = letter;
+    this._timeOffset = this.randomInteger(0, 500);
     span.style.transition = `${this._property} ${this._timer}ms ease ${this._timeOffset}ms`;
-    this._timeOffset += 20;
+    // this._timeOffset += 40;
     return span;
   }
   
@@ -10175,6 +10176,11 @@ class AccentTypographyBuild {
 
   destroyAnimation() {
     this._element.classList.remove(this._classForActivate);
+  }
+
+  randomInteger(min, max) {
+    let rand = min + Math.random() * (max + 1 - min);
+    return Math.floor(rand);
   }
 }
 
@@ -10463,6 +10469,9 @@ __webpack_require__.r(__webpack_exports__);
   const dateAccentTypography = new _accent_typography_js__WEBPACK_IMPORTED_MODULE_0__["default"](date, 500, 'active-accent-typography', 'transform');
   
   setTimeout(() => {
+    document.querySelector(title).style.opacity = 1;
+    document.querySelector(date).style.opacity = 1;
+
     titleAccentTypography.runAnimation();
     dateAccentTypography.runAnimation();
   }, 500);
