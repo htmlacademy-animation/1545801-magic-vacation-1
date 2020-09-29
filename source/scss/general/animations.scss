@@ -39,3 +39,9 @@
     opacity: 1;
   }
 }
+
+@keyframes moveAndRotate {
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+}

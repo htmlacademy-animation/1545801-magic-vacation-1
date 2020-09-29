@@ -160,6 +160,18 @@
   width: 4rem;
   height: 4rem;
   color: $c-dark;
+  animation-name: moveAndRotate, animateOpacity;
+  animation-duration: 500ms, 400ms;
+  animation-timing-function: $easeBackOut, linear;
+  animation-fill-mode: forwards, forwards;
+
+  &--next {
+    transform: translate(200%, 0) rotate(180deg);
+  }
+
+  &--prev {
+    transform: translate(-200%, 0) rotate(-180deg);
+  }
 
   @media (min-width: $stop-scaling) {
     width: 40px;
