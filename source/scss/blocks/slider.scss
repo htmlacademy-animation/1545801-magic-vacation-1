@@ -160,10 +160,10 @@
   width: 4rem;
   height: 4rem;
   color: $c-dark;
-  animation-name: moveAndRotate, animateOpacity;
-  animation-duration: 500ms, 400ms;
-  animation-timing-function: $easeBackOut, linear;
-  animation-fill-mode: forwards, forwards;
+  animation-name: moveAndRotate;
+  animation-duration: 500ms;
+  animation-timing-function: $easeBackOut;
+  animation-fill-mode: forwards;
 
   &--next {
     transform: translate(200%, 0) rotate(180deg);
@@ -296,7 +296,7 @@
 
 .swiper-slide-active, .swiper-slide-next {
   .slider__item-text {
-    opacity: 1;
+    // opacity: 1;
     transform: translateX(0);
   }
 }
