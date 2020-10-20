@@ -9,6 +9,7 @@ const STORY_SCREEN_ID = 1;
 const PRIZES_SCREEN_ID = 2;
 const prizesIcons = {
   journeys: document.querySelector(`#prizes__icon--journeys`),
+  cases: document.querySelector(`#prizes__icon--cases`),
 };
 
 export default class FullPageScroll {
@@ -60,8 +61,15 @@ export default class FullPageScroll {
     this.screenElements[this.activeScreen].classList.remove(`screen--hidden`);
     this.screenElements[this.activeScreen].classList.add(`active`);
 
-    if (this.activeScreen === PRIZES_SCREEN_ID && !prizesIcons.journeys.src) {
-      prizesIcons.journeys.src = `img/primary-award-from.svg`;
+    if (this.activeScreen === PRIZES_SCREEN_ID) {
+
+      if (prizesIcons.journeys.src !== `img/primary-award-from.svg`) {
+        prizesIcons.journeys.src = `img/primary-award-from.svg`;
+      }
+
+      if (prizesIcons.cases.src !== `img/secondary-award-from.svg`) {
+        prizesIcons.cases.src = `img/secondary-award-from.svg`;
+      }
     }
 
     if (this.prevActiveScreen === STORY_SCREEN_ID && this.activeScreen === PRIZES_SCREEN_ID) {
