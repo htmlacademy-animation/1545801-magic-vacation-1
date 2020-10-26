@@ -72,11 +72,16 @@ export default class FullPageScroll {
       }
     }
 
-    if (this.prevActiveScreen === STORY_SCREEN_ID && this.activeScreen === PRIZES_SCREEN_ID) {
-      this.bgOverlap.classList.add(`active`);
+    if (this.activeScreen === PRIZES_SCREEN_ID) {
 
-    } else if (this.bgOverlap.classList.contains(`active`)) {
-      this.bgOverlap.classList.remove(`active`);
+      if (this.prevActiveScreen === STORY_SCREEN_ID) {
+        this.bgOverlap.classList.add(`overlap-active`);
+      }
+      this.bgOverlap.style.height = `100%`;
+
+    } else if (this.bgOverlap.classList.contains(`overlap-active`)) {
+      this.bgOverlap.classList.remove(`overlap-active`);
+      this.bgOverlap.style.height = `0`;
     }
 
     if (this.activeScreen === INTRO_SCREEN_ID) {
