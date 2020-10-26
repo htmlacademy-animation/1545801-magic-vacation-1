@@ -3053,7 +3053,7 @@ img {
   height: 0;
   background-color: #5f458c; }
   .background-overlap.overlap-active {
-    transition: height 5000ms; }
+    transition: height 500ms; }
 
 .slider {
   position: relative;
