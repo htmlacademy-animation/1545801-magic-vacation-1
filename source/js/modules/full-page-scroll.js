@@ -9,6 +9,7 @@ const STORY_SCREEN_ID = 1;
 const PRIZES_SCREEN_ID = 2;
 const prizesIcons = {
   journeys: document.querySelector(`#prizes__icon--journeys`),
+  cases: document.querySelector(`#prizes__icon--cases`),
 };
 
 export default class FullPageScroll {
@@ -60,15 +61,27 @@ export default class FullPageScroll {
     this.screenElements[this.activeScreen].classList.remove(`screen--hidden`);
     this.screenElements[this.activeScreen].classList.add(`active`);
 
-    if (this.activeScreen === PRIZES_SCREEN_ID && !prizesIcons.journeys.src) {
-      prizesIcons.journeys.src = `img/primary-award-from.svg`;
+    if (this.activeScreen === PRIZES_SCREEN_ID) {
+
+      if (prizesIcons.journeys.src !== `img/primary-award-from.svg`) {
+        prizesIcons.journeys.src = `img/primary-award-from.svg`;
+      }
+
+      if (prizesIcons.cases.src !== `img/secondary-award-from.svg`) {
+        prizesIcons.cases.src = `img/secondary-award-from.svg`;
+      }
     }
 
-    if (this.prevActiveScreen === STORY_SCREEN_ID && this.activeScreen === PRIZES_SCREEN_ID) {
-      this.bgOverlap.classList.add(`active`);
+    if (this.activeScreen === PRIZES_SCREEN_ID) {
 
-    } else if (this.bgOverlap.classList.contains(`active`)) {
-      this.bgOverlap.classList.remove(`active`);
+      if (this.prevActiveScreen === STORY_SCREEN_ID) {
+        this.bgOverlap.classList.add(`overlap-active`);
+      }
+      this.bgOverlap.style.height = `100%`;
+
+    } else if (this.bgOverlap.classList.contains(`overlap-active`)) {
+      this.bgOverlap.classList.remove(`overlap-active`);
+      this.bgOverlap.style.height = `0`;
     }
 
     if (this.activeScreen === INTRO_SCREEN_ID) {
