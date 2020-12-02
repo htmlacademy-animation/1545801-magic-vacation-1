@@ -10,6 +10,7 @@ const PRIZES_SCREEN_ID = 2;
 const prizesIcons = {
   journeys: document.querySelector(`#prizes__icon--journeys`),
   cases: document.querySelector(`#prizes__icon--cases`),
+  codes: document.querySelector(`#prizes__icon--codes`),
 };
 
 export default class FullPageScroll {
@@ -63,12 +64,16 @@ export default class FullPageScroll {
 
     if (this.activeScreen === PRIZES_SCREEN_ID) {
 
-      if (prizesIcons.journeys.src !== `img/primary-award-from.svg`) {
-        prizesIcons.journeys.src = `img/primary-award-from.svg`;
+      if (prizesIcons.journeys.src !== `img/prize1.svg`) {
+        prizesIcons.journeys.src = `img/prize1.svg`;
       }
 
-      if (prizesIcons.cases.src !== `img/secondary-award-from.svg`) {
-        prizesIcons.cases.src = `img/secondary-award-from.svg`;
+      if (prizesIcons.cases.src !== `img/prize2.svg`) {
+        prizesIcons.cases.src = `img/prize2.svg`;
+      }
+
+      if (prizesIcons.codes.src !== `img/prize3.svg`) {
+        prizesIcons.codes.src = `img/prize3.svg`;
       }
     }
 
