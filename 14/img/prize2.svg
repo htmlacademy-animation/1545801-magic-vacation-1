@@ -88,15 +88,23 @@
         </g>
     </g>
 
-    <g id="backFlower">
+    <g id="backLeaf" opacity="0">
+      <animate
+        attributeType="CSS"
+        attributeName="opacity"
+        values="0; 1"
+        dur="0.5s"
+        fill="freeze"
+        begin="animCloud1.begin + 0.2s"
+      />
       <g>
         <animateTransform
-          id="animBackFlower"
+          id="animBackLeaf"
           attributeName="transform"
           type="rotate"
           values="0 270 250; 10 270 250; 0 270 250; 5 270 250; 0 270 250"
           dur="1s"
-          begin="animCloud1.begin; animBackFlower.end + 4.5s"
+          begin="animCloud1.begin; animBackLeaf.end + 4.5s"
           fill="freeze"
         />
 
@@ -173,15 +181,23 @@
       <path d="M215.46 83.44C205.53 83.44 197.46 104.34 196.92 138.76C196.92 138.85 196.92 138.93 196.92 139.02C196.92 132.26 205.22 126.77 215.45 126.77C225.68 126.77 234 132.27 234 139C234 138.91 234 138.83 234 138.74C233.49 104.31 225.4 83.41 215.48 83.41" fill="#F7396B"/>
     </g>
 
-    <g id="frontFlower">
+    <g id="frontLeaf" opacity="0">
+      <animate
+        attributeType="CSS"
+        attributeName="opacity"
+        values="0; 1"
+        dur="0.5s"
+        fill="freeze"
+        begin="animCloud1.begin + 0.2s"
+      />
       <animateTransform
-        id="animFrontFlower"
+        id="animFrontLeaf"
         attributeName="transform"
         type="rotate"
         values="0 240 330; 3 240 330; -2 240 330; 1 240 330; 0 240 330"
         keyTimes="0; 0.3; 0.5; 0.7; 1"
         dur="1.5s"
-        begin="animCloud1.begin; animBackFlower.end + 4s"
+        begin="animCloud1.begin; animBackLeaf.end + 4s"
         fill="freeze"
       />
 

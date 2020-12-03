@@ -10497,25 +10497,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _accent_typography_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./accent-typography.js */ "./source/js/modules/accent-typography.js");
 
 
-const INTRO_TITLE_CLASS = '.intro__title';
-const INTRO_DATE_CLASS = '.intro__date';
+const INTRO_TITLE_CLASS = `.intro__title`;
+const INTRO_DATE_CLASS = `.intro__date`;
 const texts = [];
 
 [
   INTRO_TITLE_CLASS,
   INTRO_DATE_CLASS,
-].forEach(textClass => {
-  texts.push(new _accent_typography_js__WEBPACK_IMPORTED_MODULE_0__["default"](textClass, 500, 'active-accent-typography', 'transform'));
+].forEach((textClass) => {
+  texts.push(new _accent_typography_js__WEBPACK_IMPORTED_MODULE_0__["default"](textClass, 500, `active-accent-typography`, `transform`));
 });
 
 function runLettersAnimations() {
-  texts.forEach(text => {
+  texts.forEach((text) => {
     text.runAnimation();
   });
 }
 
 function destroyLettersAnimations() {
-  texts.forEach(text => {
+  texts.forEach((text) => {
     text.destroyAnimation();
   });
 }
@@ -10817,8 +10817,11 @@ Object(_modules_rules_js__WEBPACK_IMPORTED_MODULE_8__["default"])();
 const fullPageScroll = new _modules_full_page_scroll__WEBPACK_IMPORTED_MODULE_9__["default"]();
 fullPageScroll.init();
 
-window.addEventListener('load', () => {
-  document.body.classList.add('pageLoaded');
+window.addEventListener(`load`, () => {
+  setTimeout(() => {
+    document.body.classList.add(`pageLoaded`);
+    // document.querySelector(`.page-header`);
+  }, 100);
 });
 
 
