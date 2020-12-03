@@ -24,6 +24,9 @@ rules();
 const fullPageScroll = new FullPageScroll();
 fullPageScroll.init();
 
-window.addEventListener('load', () => {
-  document.body.classList.add('pageLoaded');
+window.addEventListener(`load`, () => {
+  setTimeout(() => {
+    document.body.classList.add(`pageLoaded`);
+    // document.querySelector(`.page-header`);
+  }, 100);
 });
