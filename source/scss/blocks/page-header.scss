@@ -5,10 +5,6 @@
   right: 0;
   padding: 2.7rem 0;
   z-index: 10;
-  opacity: 0;
-  transition-property: opacity;
-  transition-duration: 500ms;
-  transition-timing-function: $customEasing;
 
   @media (min-width: $stop-scaling) {
     padding: 27px 0;
@@ -28,6 +24,10 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  opacity: 0;
+  transition-property: opacity;
+  transition-duration: 500ms;
+  transition-timing-function: $customEasing;
 }
 
 .page-header__logo {
@@ -39,9 +39,8 @@
   padding: 1rem 0;
   width: 10rem;
   color: $c-light;
-  opacity: 0;
   transform: translate(-50%, 0);
-  transition-property: opacity, transform;
+  transition-property: transform;
   transition-duration: 500ms;
   transition-timing-function: $customEasing;
 
@@ -139,7 +138,6 @@
 .page-header__nav {
   display: flex;
   align-items: center;
-  transform: translateX(10%);
   transition-property: transform;
   transition-duration: 500ms;
   transition-timing-function: $customEasing;
@@ -325,17 +323,12 @@
 }
 
 .pageLoaded {
-  
-  .page-header {
+
+  .page-header__wrapper {
     opacity: 1;
   }
 
   .page-header__logo {
-    opacity: 1;
     transform: translate(0, 0);
-  }
-
-  .page-header__nav {
-    transform: translateX(0);
   }
 }
