@@ -27,6 +27,11 @@ fullPageScroll.init();
 window.addEventListener(`load`, () => {
   setTimeout(() => {
     document.body.classList.add(`pageLoaded`);
-    // document.querySelector(`.page-header`);
   }, 100);
 });
+
+/* function activateResultScreen(resultScreen) {
+  resultScreen.classList.remove(`screen--hidden`);
+  resultScreen.style.pointerEvents = `all`;
+  resultScreen.style.opacity = 1;
+} */
