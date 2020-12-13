@@ -9,6 +9,7 @@ import form from './modules/form.js';
 import social from './modules/social.js';
 import rules from './modules/rules.js';
 import FullPageScroll from './modules/full-page-scroll';
+import {log} from 'three';
 
 // init modules
 mobileHeight();
@@ -27,11 +28,19 @@ fullPageScroll.init();
 window.addEventListener(`load`, () => {
   setTimeout(() => {
     document.body.classList.add(`pageLoaded`);
+
+    const gameButtonsWrapper = document.querySelector(`.game__buttons`);
+    const gameButtons = gameButtonsWrapper.querySelectorAll(`.game__button`);
+    const results = document.querySelectorAll(`.screen--result`);
+
+    gameButtons.forEach((btn, index) => {
+      btn.addEventListener(`click`, () => {
+        setTimeout(() => {
+          results[index].querySelector(`#showResult${index + 1}`).beginElement();
+        }, 300);
+      });
+    });
+
+    gameButtonsWrapper.style.display = `block`;
   }, 100);
 });
-
-/* function activateResultScreen(resultScreen) {
-  resultScreen.classList.remove(`screen--hidden`);
-  resultScreen.style.pointerEvents = `all`;
-  resultScreen.style.opacity = 1;
-} */

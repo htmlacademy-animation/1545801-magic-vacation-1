@@ -1,4 +1,3 @@
-<!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 660.77 109.24" opacity="0"> -->
 <svg
   xmlns="http://www.w3.org/2000/svg"
   viewBox="0 -70 660.77 185"
@@ -20,7 +19,6 @@
     stroke="currentColor"
     opacity="0"
   >
-  <!-- transform="translate(-2.16 -1.5)" -->
     <set
       id="showS1"
       attributeName="opacity"
@@ -64,7 +62,7 @@
       attributeName="opacity"
       to="1"
       fill="freeze"
-      begin="showS1.begin + 150ms"
+      begin="showS1.begin + 50ms"
     />
 
     <animateTransform
@@ -102,7 +100,7 @@
       attributeName="opacity"
       to="1"
       fill="freeze"
-      begin="showS2.begin + 150ms"
+      begin="showS2.begin + 50ms"
     />
 
     <animateTransform
@@ -140,7 +138,7 @@
       attributeName="opacity"
       to="1"
       fill="freeze"
-      begin="showS3.begin + 150ms"
+      begin="showS3.begin + 50ms"
     />
 
     <animateTransform
@@ -178,7 +176,7 @@
       attributeName="opacity"
       to="1"
       fill="freeze"
-      begin="showS4.begin + 150ms"
+      begin="showS4.begin + 50ms"
     />
 
     <animateTransform
@@ -216,7 +214,7 @@
       attributeName="opacity"
       to="1"
       fill="freeze"
-      begin="showS5.begin + 150ms"
+      begin="showS5.begin + 50ms"
     />
 
     <animateTransform
@@ -254,7 +252,7 @@
       attributeName="opacity"
       to="1"
       fill="freeze"
-      begin="showS6.begin + 150ms"
+      begin="showS6.begin + 50ms"
     />
 
     <animateTransform
@@ -291,7 +289,7 @@
       attributeName="opacity"
       to="1"
       fill="freeze"
-      begin="showS7.begin + 150ms"
+      begin="showS7.begin + 50ms"
     />
 
     <animateTransform
@@ -329,7 +327,7 @@
       attributeName="opacity"
       to="1"
       fill="freeze"
-      begin="showS8.begin + 150ms"
+      begin="showS8.begin + 50ms"
     />
 
     <animateTransform
