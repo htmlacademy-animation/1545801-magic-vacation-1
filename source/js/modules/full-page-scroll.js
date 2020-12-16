@@ -33,7 +33,7 @@ export default class FullPageScroll {
     this.activeScreen = 0;
     this.onScrollHandler = this.onScroll.bind(this);
     this.onUrlHashChengedHandler = this.onUrlHashChanged.bind(this);
-    this.gameTimer = new Timer(3000, updateGameCounter);
+    this.gameTimer = new Timer(300000, updateGameCounter);
 
   }
 
