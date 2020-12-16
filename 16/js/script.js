@@ -10390,7 +10390,7 @@ class FullPageScroll {
     this.activeScreen = 0;
     this.onScrollHandler = this.onScroll.bind(this);
     this.onUrlHashChengedHandler = this.onUrlHashChanged.bind(this);
-    this.gameTimer = new _timer__WEBPACK_IMPORTED_MODULE_2__["default"](3000, updateGameCounter);
+    this.gameTimer = new _timer__WEBPACK_IMPORTED_MODULE_2__["default"](300000, updateGameCounter);
 
   }
 
