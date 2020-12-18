@@ -3,10 +3,19 @@ import {
   runLettersAnimations,
   destroyLettersAnimations,
 } from './intro';
+import Timer from './timer';
+import msParser from './ms-parser';
 
 const INTRO_SCREEN_ID = 0;
 const STORY_SCREEN_ID = 1;
 const PRIZES_SCREEN_ID = 2;
+const GAME_SCREEN_ID = 4;
+const updateGameCounter = (timeLeft) => {
+  const gameCounter = document.querySelector(`.game__counter`);
+  const time = msParser(timeLeft);
+
+  gameCounter.innerHTML = `<span>${time.minutes}</span>:<span>${time.seconds}</span>`;
+};
 const prizesIcons = {
   journeys: document.querySelector(`#prizes__icon--journeys`),
   cases: document.querySelector(`#prizes__icon--cases`),
@@ -24,6 +33,8 @@ export default class FullPageScroll {
     this.activeScreen = 0;
     this.onScrollHandler = this.onScroll.bind(this);
     this.onUrlHashChengedHandler = this.onUrlHashChanged.bind(this);
+    this.gameTimer = new Timer(300000, updateGameCounter);
+
   }
 
   init() {
@@ -92,6 +103,14 @@ export default class FullPageScroll {
     if (this.activeScreen === INTRO_SCREEN_ID) {
       destroyLettersAnimations();
       setTimeout(runLettersAnimations, 300);
+    }
+
+    if (this.activeScreen === GAME_SCREEN_ID) {
+      this.gameTimer.restartTimer();
+    }
+
+    if (this.prevActiveScreen === GAME_SCREEN_ID) {
+      this.gameTimer.stopTimer();
     }
   }
 
