@@ -1,8 +1,8 @@
 export default function (duration) {
-  let milliseconds = parseInt((duration % 1000) / 100, 10);
-  let seconds = parseInt((duration / 1000) % 60, 10);
-  let minutes = parseInt((duration / (1000 * 60)) % 60, 10);
-  let hours = parseInt((duration / (1000 * 60 * 60)) % 24, 10);
+  let milliseconds = ~~((duration % 1000) / 100);
+  let seconds = ~~((duration / 1000) % 60);
+  let minutes = ~~((duration / (1000 * 60)) % 60);
+  let hours = ~~((duration / (1000 * 60 * 60)) % 24);
 
   hours = (hours < 10) ? `0` + hours : hours;
   minutes = (minutes < 10) ? `0` + minutes : minutes;
