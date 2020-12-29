@@ -107,6 +107,16 @@
 .prizes__item {
   margin-left: 7.5rem;
 
+  & b {
+    width: 5.5rem;
+  }
+
+  @media (max-width: 1024px) and (orientation: landscape) {
+    & b {
+      width: 3rem;
+    }
+  }
+
   @media (min-width: $stop-scaling) {
     margin-left: 75px;
   }
@@ -204,6 +214,16 @@
   }
 
   &--codes {
+    & b {
+      width: 19rem;
+    }
+
+    @media (max-width: 1024px) and (orientation: landscape) {
+      & b {
+        width: 9rem;
+      }
+    }
+
     @media (max-width: $tablet) and (orientation: portrait) {
       padding-left: 0.8rem;
     }

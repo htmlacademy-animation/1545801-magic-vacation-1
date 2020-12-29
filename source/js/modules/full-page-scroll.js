@@ -5,6 +5,7 @@ import {
 } from './intro';
 import Timer from './timer';
 import msParser from './ms-parser';
+import CounterAnimation from './counter-animation';
 
 const INTRO_SCREEN_ID = 0;
 const STORY_SCREEN_ID = 1;
@@ -21,6 +22,23 @@ const prizesIcons = {
   cases: document.querySelector(`#prizes__icon--cases`),
   codes: document.querySelector(`#prizes__icon--codes`),
 };
+const prizesItems = {
+  journeys: document.querySelector(`.prizes__item--journeys`),
+  cases: document.querySelector(`.prizes__item--cases`),
+  codes: document.querySelector(`.prizes__item--codes`),
+};
+const prizesCounts = {
+  journeys: prizesItems.journeys.querySelector(`.prizes__desc b`),
+  cases: prizesItems.cases.querySelector(`.prizes__desc b`),
+  codes: prizesItems.codes.querySelector(`.prizes__desc b`),
+};
+const hidePrizesItems = () => {
+  const names = Object.keys(prizesItems);
+
+  names.forEach((name) => {
+    prizesItems[name].style.opacity = 0;
+  });
+};
 
 export default class FullPageScroll {
   constructor() {
@@ -35,6 +53,38 @@ export default class FullPageScroll {
     this.onUrlHashChengedHandler = this.onUrlHashChanged.bind(this);
     this.gameTimer = new Timer(300000, updateGameCounter);
 
+    hidePrizesItems();
+
+    this.journeysCounter = new CounterAnimation({
+      node: prizesCounts.journeys,
+      from: 0,
+      to: +prizesCounts.journeys.innerHTML,
+      fps: 12,
+      duration: 500,
+      begin: () => {
+        prizesItems.journeys.style.opacity = 1;
+      },
+    });
+    this.casesCounter = new CounterAnimation({
+      node: prizesCounts.cases,
+      from: 0,
+      to: +prizesCounts.cases.innerHTML,
+      fps: 12,
+      duration: 500,
+      begin: () => {
+        prizesItems.cases.style.opacity = 1;
+      },
+    });
+    this.codesCounter = new CounterAnimation({
+      node: prizesCounts.codes,
+      from: 11,
+      to: +prizesCounts.codes.innerHTML,
+      fps: 12,
+      duration: 500,
+      begin: () => {
+        prizesItems.codes.style.opacity = 1;
+      },
+    });
   }
 
   init() {
@@ -75,16 +125,25 @@ export default class FullPageScroll {
 
     if (this.activeScreen === PRIZES_SCREEN_ID) {
 
-      if (prizesIcons.journeys.src !== `img/prize1.svg`) {
-        prizesIcons.journeys.src = `img/prize1.svg`;
-      }
+      if (+prizesItems.journeys.style.opacity === 0) {
+        if (prizesIcons.journeys.src !== `img/prize1.svg`) {
+          prizesIcons.journeys.src = `img/prize1.svg`;
+          this.journeysCounter.startTimer();
+        }
 
-      if (prizesIcons.cases.src !== `img/prize2.svg`) {
-        prizesIcons.cases.src = `img/prize2.svg`;
-      }
+        if (prizesIcons.cases.src !== `img/prize2.svg`) {
+          prizesIcons.cases.src = `img/prize2.svg`;
+          setTimeout(() => {
+            this.casesCounter.startTimer();
+          }, 4500);
+        }
 
-      if (prizesIcons.codes.src !== `img/prize3.svg`) {
-        prizesIcons.codes.src = `img/prize3.svg`;
+        if (prizesIcons.codes.src !== `img/prize3.svg`) {
+          prizesIcons.codes.src = `img/prize3.svg`;
+          setTimeout(() => {
+            this.codesCounter.startTimer();
+          }, 7000);
+        }
       }
     }
 
