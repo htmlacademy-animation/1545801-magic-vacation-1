@@ -17,6 +17,8 @@ export default class extends CanvasGroup {
     });
 
     super([ice, seaCalf], props);
+
+    this.flipX = true;
   }
 
   show(canvas, duration, endCB = () => {}) {

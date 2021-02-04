@@ -171,6 +171,14 @@ function getParentProps(child) {
     props.scaleX *= parent.scaleX;
     props.scaleY *= parent.scaleY;
 
+    if (parent.flipX) {
+      props.scaleX = -props.scaleX;
+    }
+
+    if (parent.flipY) {
+      props.scaleY = -props.scaleY;
+    }
+
     parent = parent.parent;
   }
 
