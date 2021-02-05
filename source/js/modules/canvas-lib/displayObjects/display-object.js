@@ -9,6 +9,8 @@ export default class {
     this.flipY = false;
     this.scaleX = 1;
     this.scaleY = 1;
+    this.skewX = 1;
+    this.skewY = 1;
     this.angle = 0;
     this.visible = true;
     this.set(props);

@@ -35,15 +35,18 @@ export default class {
           if (child.visible) {
             const alpha = child.alpha * parentProps.alpha;
             const scale = {};
+            const skew = {};
             const position = {};
             const angle = {};
 
             position.x = child.x * parentProps.scaleX + parentProps.x;
             position.y = child.y * parentProps.scaleY + parentProps.y;
             scale.x = child.scaleX * parentProps.scaleX;
-            scale.y = child.scaleX * parentProps.scaleY;
+            scale.y = child.scaleY * parentProps.scaleY;
             angle.degrees = child.angle + parentProps.angle;
-            angle.radians = angle.degrees * Math.PI / 180;
+            angle.radians = degreesToRadians(angle.degrees);
+            skew.x = child.skewX + parentProps.skewX;
+            skew.y = child.skewY + parentProps.skewY;
 
             if (child.flipX) {
               scale.x = -scale.x;
@@ -57,12 +60,21 @@ export default class {
 
             } else {
               ctx.save();
+              ctx.resetTransform();
 
               ctx.globalAlpha = alpha;
-              ctx.translate(position.x, position.y);
-              ctx.rotate(angle.radians);
+              // ctx.translate(position.x, position.y);
+              // ctx.rotate(angle.radians);
+              // ctx.scale(scale.x, scale.y);
+              ctx.setTransform(
+                  scale.x,
+                  Math.tan(angle.radians + degreesToRadians(skew.x)) * scale.x,
+                  -Math.tan(angle.radians + degreesToRadians(skew.y)) * scale.y,
+                  scale.y,
+                  position.x,
+                  position.y
+              );
 
-              ctx.scale(scale.x, scale.y);
               ctx.drawImage(
                   child.image,
                   -child.width * child.originX,
@@ -157,6 +169,8 @@ function getParentProps(child) {
     angle: 0,
     scaleX: 1,
     scaleY: 1,
+    skewX: 1,
+    skewY: 1,
     x: 0,
     y: 0,
     alpha: 1,
@@ -170,6 +184,8 @@ function getParentProps(child) {
     props.y = parent.y * (parent.parent ? parent.parent.scaleY : 1);
     props.scaleX *= parent.scaleX;
     props.scaleY *= parent.scaleY;
+    props.skewX += parent.skewX;
+    props.skewY += parent.skewY;
 
     if (parent.flipX) {
       props.scaleX = -props.scaleX;
@@ -183,4 +199,8 @@ function getParentProps(child) {
   }
 
   return props;
+}
+
+function degreesToRadians(degrees) {
+  return degrees * (Math.PI / 180);
 }

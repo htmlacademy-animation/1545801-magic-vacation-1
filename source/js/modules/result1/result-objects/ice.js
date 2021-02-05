@@ -17,8 +17,6 @@ export default class extends CanvasGroup {
     });
 
     super([ice, seaCalf], props);
-
-    this.flipX = true;
   }
 
   show(canvas, duration, endCB = () => {}) {
@@ -42,14 +40,13 @@ export default class extends CanvasGroup {
   }
 
   bounce() {
-    const ice = this.canvasObjects.ice;
-    let offset = ice.getScaledHeight() * 0.1;
+    const ice = this;
+    let offset = ice.getScaledHeight() * 0.03;
     const defaultY = ice.y + offset;
     const sAngle = ice.angle;
     let angle = 5;
     const duration = 500;
     const easing = `easeInOutQuad`;
-    const onChange = () => this.updateSeaCalfPosition();
     const update = () => {
       angleTime -= 0.07;
       yTime -= 0.07;
@@ -61,7 +58,6 @@ export default class extends CanvasGroup {
 
       console.log(offset);
 
-      onChange();
 
       if (!stopAnimate) {
         requestAnimationFrame(update);
@@ -86,5 +82,52 @@ export default class extends CanvasGroup {
     // }, 2000);
 
     // update();
+
+    let size = 1;
+    let ang = 5;
+
+    let move = () => {
+      this.rotate(0, 500, `easeInQuad`);
+      this.moveY(defaultY, 500, `easeInQuad`, () => {
+        this.rotate(-ang * size, 500, `easeOutQuad`);
+        this.moveY(defaultY + offset * size, 500, `easeOutQuad`, () => {
+          this.rotate(0, 500, `easeInQuad`);
+          this.moveY(defaultY, 500, `easeInQuad`, () => {
+            this.rotate(ang * size, 500, `easeOutQuad`);
+            this.moveY(defaultY - offset * size, 500, `easeOutQuad`, () => {
+              size -= 0.2;
+
+              if (size > 0.1) {
+                move();
+              }
+            });
+          });
+        });
+      });
+    };
+    move();
+
+  }
+
+  rotate(angle, duration, easing, endCB = () => {}) {
+    animate(this, {
+      props: {
+        angle,
+      },
+      duration,
+      easing,
+      onComplete: endCB,
+    });
+  }
+
+  moveY(y, duration, easing, endCB = () => {}) {
+    animate(this, {
+      props: {
+        y,
+      },
+      duration,
+      easing,
+      onComplete: endCB,
+    });
   }
 }

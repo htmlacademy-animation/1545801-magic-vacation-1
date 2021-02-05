@@ -12,7 +12,9 @@ export default class extends CanvasLib {
     const ice = this.canvasObjects.ice;
 
     this.addChild(ice);
-    ice.show(this.canvas, 500);
+    ice.show(this.canvas, 500, () => {
+      ice.bounce();
+    });
 
     setTimeout(() => {
       this.showSnowflakes();
@@ -43,32 +45,6 @@ export default class extends CanvasLib {
       rightSnowflake,
       ice,
     };
-  }
-
-  showIce(endCB = () => {}) {
-    const ice = this.canvasObjects.ice;
-    const seaCalf = this.canvasObjects.seaCalf;
-    const from = this.canvas.height + ice.getScaledHeight() * 0.6;
-    const to = ice.y - ice.getScaledHeight() * 0.15;
-    const onChange = () => this.updateSeaCalfPosition();
-
-    this.addChild(ice, seaCalf);
-
-    ice.angle = 10;
-    ice.y = from;
-
-    animate(ice, {
-      duration: 500,
-      onChange,
-      props: {
-        y: to,
-      },
-      easing: `easeOutSine`,
-      onComplete: () => {
-        this.bounceIce();
-        endCB();
-      },
-    });
   }
 
   showSnowflakes() {
