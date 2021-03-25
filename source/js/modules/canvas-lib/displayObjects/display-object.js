@@ -49,4 +49,43 @@ export default class {
   getScaledHeight() {
     return this.height * this.scaleY;
   }
+
+  _render() {}
+
+  getParentProps() {
+    const props = {
+      angle: 0,
+      scaleX: 1,
+      scaleY: 1,
+      skewX: 1,
+      skewY: 1,
+      x: 0,
+      y: 0,
+      alpha: 1,
+    };
+    let parent = this.parent;
+
+    while (parent) {
+      props.angle += parent.angle;
+      props.alpha *= parent.alpha;
+      props.x = parent.x * (parent.parent ? parent.parent.scaleX : 1);
+      props.y = parent.y * (parent.parent ? parent.parent.scaleY : 1);
+      props.scaleX *= parent.scaleX;
+      props.scaleY *= parent.scaleY;
+      props.skewX += parent.skewX;
+      props.skewY += parent.skewY;
+
+      if (parent.flipX) {
+        props.scaleX = -props.scaleX;
+      }
+
+      if (parent.flipY) {
+        props.scaleY = -props.scaleY;
+      }
+
+      parent = parent.parent;
+    }
+
+    return props;
+  }
 }

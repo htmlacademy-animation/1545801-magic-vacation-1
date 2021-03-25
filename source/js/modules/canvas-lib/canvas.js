@@ -1,5 +1,6 @@
 import CanvasImage from './displayObjects/image';
 import CanvasGroup from './displayObjects/group';
+import CanvasGraphics from './displayObjects/graphics';
 
 export default class {
   constructor(canvas) {
@@ -10,6 +11,7 @@ export default class {
 
     this.Image = CanvasImage;
     this.Group = CanvasGroup;
+    this.Graphics = CanvasGraphics;
   }
 
   addChild(...objects) {
@@ -27,70 +29,16 @@ export default class {
   update() {
     const ctx = this.canvas.getContext(`2d`);
     const canvas = this.canvas;
-    const update = (children) => {
-      if (children.length > 0) {
-        const parentProps = getParentProps(children[0]);
-
-        children.forEach((child) => {
-          if (child.visible) {
-            const alpha = child.alpha * parentProps.alpha;
-            const scale = {};
-            const skew = {};
-            const position = {};
-            const angle = {};
-
-            position.x = child.x * parentProps.scaleX + parentProps.x;
-            position.y = child.y * parentProps.scaleY + parentProps.y;
-            scale.x = child.scaleX * parentProps.scaleX;
-            scale.y = child.scaleY * parentProps.scaleY;
-            angle.degrees = child.angle + parentProps.angle;
-            angle.radians = degreesToRadians(angle.degrees);
-            skew.x = child.skewX + parentProps.skewX;
-            skew.y = child.skewY + parentProps.skewY;
-
-            if (child.flipX) {
-              scale.x = -scale.x;
-            }
-
-            if (child.flipY) {
-              scale.y = -scale.y;
-            }
-            if (child.children) {
-              update(child.children);
-
-            } else {
-              ctx.save();
-              ctx.resetTransform();
-
-              ctx.globalAlpha = alpha;
-              // ctx.translate(position.x, position.y);
-              // ctx.rotate(angle.radians);
-              // ctx.scale(scale.x, scale.y);
-              ctx.setTransform(
-                  scale.x,
-                  Math.tan(angle.radians + degreesToRadians(skew.x)) * scale.x,
-                  -Math.tan(angle.radians + degreesToRadians(skew.y)) * scale.y,
-                  scale.y,
-                  position.x,
-                  position.y
-              );
-
-              ctx.drawImage(
-                  child.image,
-                  -child.width * child.originX,
-                  -child.height * child. originY
-              );
-
-              ctx.restore();
-            }
-          }
-        });
-
-      }
-    };
+    const children = this.children;
+    const childrenLength = children.length;
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    update(this.children);
+
+    if (childrenLength > 0) {
+      children.forEach((child) => {
+        child._render(ctx);
+      });
+    }
   }
 
   startRender() {
@@ -162,45 +110,4 @@ export default class {
     canvas.style.left = `${left}px`;
     canvas.style.top = `${top}px`;
   }
-}
-
-function getParentProps(child) {
-  const props = {
-    angle: 0,
-    scaleX: 1,
-    scaleY: 1,
-    skewX: 1,
-    skewY: 1,
-    x: 0,
-    y: 0,
-    alpha: 1,
-  };
-  let parent = child.parent;
-
-  while (parent) {
-    props.angle += parent.angle;
-    props.alpha *= parent.alpha;
-    props.x = parent.x * (parent.parent ? parent.parent.scaleX : 1);
-    props.y = parent.y * (parent.parent ? parent.parent.scaleY : 1);
-    props.scaleX *= parent.scaleX;
-    props.scaleY *= parent.scaleY;
-    props.skewX += parent.skewX;
-    props.skewY += parent.skewY;
-
-    if (parent.flipX) {
-      props.scaleX = -props.scaleX;
-    }
-
-    if (parent.flipY) {
-      props.scaleY = -props.scaleY;
-    }
-
-    parent = parent.parent;
-  }
-
-  return props;
-}
-
-function degreesToRadians(degrees) {
-  return degrees * (Math.PI / 180);
 }

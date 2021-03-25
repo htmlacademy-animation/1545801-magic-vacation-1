@@ -6,13 +6,12 @@ const result1Sources = {
   seaCalf: `./img/result1/sea-calf-2.png`,
   snowflake: `./img/result1/snowflake.png`,
   tree: `./img/result1/tree.png`,
-  tree2: `./img/result1/tree 2.png`,
 };
 const canvas = document.querySelector(`#result-canvas`);
 const runResult = (result, sources) => {
   result.setCanvasSize(1000, 1000);
-  drawResultOnFullScreen(result);
-  window.addEventListener(`resize`, () => drawResultOnFullScreen(result));
+  resizeOnFullScreen(result);
+  window.addEventListener(`resize`, () => resizeOnFullScreen(result));
 
   result.loadImages(sources, (images) => {
     result.createObjects(images, canvas);
@@ -20,7 +19,7 @@ const runResult = (result, sources) => {
     result.startAnimation();
   });
 };
-const drawResultOnFullScreen = (result) => {
+const resizeOnFullScreen = (result) => {
   result.setScaleCanvas(Math.max(window.innerWidth, window.innerHeight));
   result.setCanvasToCenter(window.innerWidth, window.innerHeight);
 };
@@ -34,18 +33,18 @@ export default () => {
   if (results.length) {
     for (let i = 0; i < showResultEls.length; i++) {
       showResultEls[i].addEventListener(`click`, function () {
-        let target = showResultEls[i].getAttribute(`data-target`);
+        // let target = showResultEls[i].getAttribute(`data-target`);
         [].slice.call(results).forEach(function (el) {
           el.classList.remove(`screen--show`);
           el.classList.add(`screen--hidden`);
         });
-        let targetEl = [].slice.call(results).filter(function (el) {
-          return el.getAttribute(`id`) === target;
-        });
+        // let targetEl = [].slice.call(results).filter(function (el) {
+        //   return el.getAttribute(`id`) === target;
+        // });
         // targetEl[0].classList.add(`screen--show`);
         // targetEl[0].classList.remove(`screen--hidden`);
 
-        this.style.pointerEvents = `none`;
+        // this.style.pointerEvents = `none`;
         switch (i) {
           case 0:
             images = result1Sources;

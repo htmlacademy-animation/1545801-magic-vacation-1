@@ -8,4 +8,4 @@ export default () => {
   lastText.addEventListener(`animationend`, () => {
     rulesButton.classList.add(`rules__link-active`);
   });
-}
+};

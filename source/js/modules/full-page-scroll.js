@@ -128,7 +128,8 @@ export default class FullPageScroll {
       if (+prizesItems.journeys.style.opacity === 0) {
         if (prizesIcons.journeys.src !== `img/prize1.svg`) {
           prizesIcons.journeys.src = `img/prize1.svg`;
-          this.journeysCounter.startTimer();
+          prizesItems.journeys.style.opacity = 1;
+          // this.journeysCounter.startTimer();
         }
 
         if (prizesIcons.cases.src !== `img/prize2.svg`) {

@@ -42,4 +42,22 @@ export default class extends CanvasObject {
       object.parent = undefined;
     }
   }
+
+  _render(ctx) {
+    const elem = this;
+    const children = this.children;
+    const childrenLength = children.length;
+
+    if (elem.alpha < 0) {
+      elem.alpha = 0;
+    } else if (elem.alpha > 1) {
+      elem.alpha = 1;
+    }
+
+    if (this.visible && this.alpha > 0 && childrenLength > 0) {
+      children.forEach((child) => {
+        child._render(ctx);
+      });
+    }
+  }
 }
