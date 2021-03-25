@@ -9,10 +9,6 @@ import {
 } from '../canvas-lib/utils';
 
 export default class extends CanvasLib {
-  constructor(canvas) {
-    super(canvas);
-  }
-
   startAnimation() {
     const ice = this.canvasObjects.ice;
     const tree1 = this.canvasObjects.tree1;
