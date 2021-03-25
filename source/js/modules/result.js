@@ -8,7 +8,7 @@ const result1Sources = {
   tree: `./img/result1/tree.png`,
 };
 const canvas = document.querySelector(`#result-canvas`);
-const runResult = (result, sources) => {
+const showResult = (result, sources) => {
   result.setCanvasSize(1000, 1000);
   resizeOnFullScreen(result);
   window.addEventListener(`resize`, () => resizeOnFullScreen(result));
@@ -57,7 +57,7 @@ export default () => {
 
 
         if (resultAnimation) {
-          runResult(resultAnimation, images);
+          showResult(resultAnimation, images);
         }
       });
     }
