@@ -26,13 +26,20 @@ export default class {
     }
   }
 
-  update() {
-    const ctx = this.canvas.getContext(`2d`);
+  clear() {
     const canvas = this.canvas;
+    const ctx = canvas.getContext(`2d`);
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  }
+
+  update() {
+    const canvas = this.canvas;
+    const ctx = canvas.getContext(`2d`);
     const children = this.children;
     const childrenLength = children.length;
 
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    this.clear();
 
     if (childrenLength > 0) {
       children.forEach((child) => {
@@ -43,18 +50,18 @@ export default class {
 
   startRender() {
     const render = () => {
-      if (!this.isStopperRender) {
+      if (!this.isStoppedRender) {
         this.update();
         requestAnimationFrame(render);
       }
     };
 
-    this.isStopperRender = false;
+    this.isStoppedRender = false;
     render();
   }
 
   stopRender() {
-    this.isStopperRender = true;
+    this.isStoppedRender = true;
   }
 
   loadImages(sources, endCB = () => {}) {
@@ -109,5 +116,26 @@ export default class {
 
     canvas.style.left = `${left}px`;
     canvas.style.top = `${top}px`;
+  }
+
+  enableResize() {
+    const resizeFn = () => this.resizeOnFullScreen();
+
+    this._resizeFn = resizeFn;
+
+    window.addEventListener(`resize`, this._resizeFn);
+  }
+
+  disableResize() {
+    const resizeFn = this._resizeFn;
+
+    if (resizeFn) {
+      window.removeEventListener(`resize`, resizeFn);
+    }
+  }
+
+  resizeOnFullScreen() {
+    this.setScaleCanvas(Math.max(window.innerWidth, window.innerHeight));
+    this.setCanvasToCenter(window.innerWidth, window.innerHeight);
   }
 }

@@ -31,6 +31,10 @@ export default class extends CanvasImage {
     animate();
   }
 
+  stopAnimations() {
+    this.isStopAnimation = true;
+  }
+
   show(duration, endCB = () => {}) {
     this.alpha = 0;
     animate(this, {

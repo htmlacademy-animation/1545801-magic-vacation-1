@@ -9,6 +9,27 @@ import {
 } from '../canvas-lib/utils';
 
 export default class extends CanvasLib {
+  constructor(canvas) {
+    super(canvas);
+    this.setCanvasSize(1000, 1000);
+    this.imageSources = {
+      airplane: `./img/result1/airplane.png`,
+      ice: `./img/result1/ice.png`,
+      seaCalf: `./img/result1/sea-calf-2.png`,
+      snowflake: `./img/result1/snowflake.png`,
+      tree: `./img/result1/tree.png`,
+    };
+  }
+
+  init(endCB = () => {}) {
+    this.loadImages(this.imageSources, (images) => {
+      this.createObjects(images, this.canvas);
+      this.startAnimation();
+      this.startRender();
+      endCB();
+    });
+  }
+
   startAnimation() {
     const ice = this.canvasObjects.ice;
     const tree1 = this.canvasObjects.tree1;
@@ -27,6 +48,10 @@ export default class extends CanvasLib {
     airplane.animate(() => {
       this.updateBlob();
     });
+  }
+
+  stopAnimation() {
+
   }
 
   createObjects(images, canvas) {
