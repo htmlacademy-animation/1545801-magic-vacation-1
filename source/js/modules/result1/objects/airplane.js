@@ -10,7 +10,7 @@ export default class extends CanvasImage {
     };
     const maxX = pos.x + 350;
     const amplitude = 2.5;
-    const animate = () => {
+    const update = () => {
       time += 0.06;
       pos.x += 5;
       pos.y += Math.sin(time) * amplitude;
@@ -20,7 +20,7 @@ export default class extends CanvasImage {
       change();
 
       if (pos.x < maxX) {
-        requestAnimationFrame(animate);
+        requestAnimationFrame(update);
       } else {
         endCB();
       }
@@ -28,7 +28,7 @@ export default class extends CanvasImage {
     let time = 0.8;
     let angle;
 
-    animate();
+    update();
   }
 
   stopAnimations() {

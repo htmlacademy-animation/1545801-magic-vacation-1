@@ -71,5 +71,3 @@ export default () => {
     }
   }
 };
-
-let asd = false;
