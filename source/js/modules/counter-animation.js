@@ -64,7 +64,7 @@ export default class {
       this.prevTime = currentTime;
 
       value = this.from + (this.to - this.from) * (this.currentTime / this.duration);
-      this.value = ~~value;
+      this.value = Math.floor(value);
       this.updateNode();
       this.update(this.value);
     }

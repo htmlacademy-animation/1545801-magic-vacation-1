@@ -345,14 +345,18 @@
       </div>
     </section>
 
+
     <section class="screen screen--hidden screen--result" id="result">
       <div class="screen__wrapper">
         <div class="result result--trip">
           <div class="result__image">
-            <picture>
-              <source srcset="img/result1-mob.png 1x, img/result1-mob@2x.png 2x" media="(max-width: 768px) and (orientation: portrait)">
-              <img src="img/result1.png" srcset="img/result1@2x.png 2x" alt="">
-            </picture>
+            <canvas class="result-canvas">
+              <picture>
+                <source srcset="img/result1-mob.png 1x, img/result1-mob@2x.png 2x" media="(max-width: 768px) and (orientation: portrait)">
+                <img src="img/result1.png" srcset="img/result1@2x.png 2x" alt="">
+              </picture>
+            </canvas>
+
           </div>
           <h2 class="result__title">
             <span class="visually-hidden">Победа!</span>
@@ -362,7 +366,7 @@
               opacity="0"
             >
               <animate
-                id="showResult1"
+                id="resultTitle"
                 attributeType="CSS"
                 attributeName="opacity"
                 from="0"
@@ -383,7 +387,7 @@
                 keySplines="0.61 1 0.88 1"
                 dur="500ms"
                 fill="freeze"
-                begin="showResult1.begin"
+                begin="resultTitle.begin"
               />
 
               <path
@@ -520,10 +524,12 @@
       <div class="screen__wrapper">
         <div class="result result--prize">
           <div class="result__image">
-            <picture>
-              <source srcset="img/result2-mob.png 1x, img/result2-mob@2x.png 2x" media="(max-width: 768px) and (orientation: portrait)">
-              <img src="img/result2.png" srcset="img/result2@2x.png 2x" alt="">
-            </picture>
+            <canvas class="result-canvas">
+              <picture>
+                <source srcset="img/result2-mob.png 1x, img/result2-mob@2x.png 2x" media="(max-width: 768px) and (orientation: portrait)">
+                <img src="img/result2.png" srcset="img/result2@2x.png 2x" alt="">
+              </picture>
+            </canvas>
           </div>
           <h2 class="result__title">
             <span class="visually-hidden">Победа!</span>
@@ -533,7 +539,7 @@
               opacity="0"
             >
               <animate
-                id="showResult2"
+                id="result2Title"
                 attributeType="CSS"
                 attributeName="opacity"
                 from="0"
@@ -553,7 +559,7 @@
                 keySplines="0.61 1 0.88 1"
                 dur="500ms"
                 fill="freeze"
-                begin="showResult2.begin"
+                begin="result2Title.begin"
               />
 
               <path
@@ -687,10 +693,12 @@
       <div class="screen__wrapper">
         <div class="result result--negative">
           <div class="result__image">
-            <picture>
-              <source srcset="img/result3-mob.png 1x, img/result3-mob@2x.png 2x" media="(max-width: 768px) and (orientation: portrait)">
-              <img src="img/result3.png" srcset="img/result3@2x.png 2x" alt="">
-            </picture>
+            <canvas class="result-canvas">
+              <picture>
+                <source srcset="img/result3-mob.png 1x, img/result3-mob@2x.png 2x" media="(max-width: 768px) and (orientation: portrait)">
+                <img src="img/result3.png" srcset="img/result3@2x.png 2x" alt="">
+              </picture>
+            </canvas>
           </div>
           <h2 class="result__title">
             <span class="visually-hidden">Не угадал!</span>
@@ -700,7 +708,7 @@
               opacity="0">
 
               <animate
-                id="showResult3"
+                id="result3Title"
                 attributeType="CSS"
                 attributeName="opacity"
                 from="0"
@@ -722,7 +730,7 @@
                   attributeName="opacity"
                   to="1"
                   fill="freeze"
-                  begin="showResult3.begin"
+                  begin="result3Title.begin"
                 />
 
                 <animateTransform

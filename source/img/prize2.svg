@@ -1,6 +1,4 @@
-<!-- <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="none" viewBox="0 0 340 330"> -->
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="none" viewBox="0 0 340 350">
-<!-- <rect width="350" height="330" viewBox="0 0 350 330" fill="grey"/> -->
     <g id="clouds">
       <animate
         id="animOpacityClouds"
@@ -112,18 +110,20 @@
       </g>
       <path d="M263 327.88C263 327.88 258.09 257.61 268.54 247.16" stroke="#E81A5A" stroke-width="2" stroke-miterlimit="10"/>
     </g>
+
     <g id="suitcase" opacity="0">
 
-       <animateTransform
-            id="animSuitcase"
-            attributeName="transform"
-            type="scale"
-            values="0; 0; 0.7; 1"
-            keyTimes="0; 0.1; 0.9; 1"
-            dur="1.5s"
-            additive="sum"
-            begin="animCloud1.end"
-            fill="freeze"/>
+      <animateTransform
+          id="animSuitcase"
+          attributeName="transform"
+          type="scale"
+          values="0; 0; 0.7; 1"
+          keyTimes="0; 0.1; 0.9; 1"
+          dur="1.5s"
+          additive="sum"
+          begin="animCloud1.end"
+          fill="freeze"
+      />
 
         <set
             attributeName="opacity"

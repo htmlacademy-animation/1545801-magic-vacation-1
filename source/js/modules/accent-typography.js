@@ -1,9 +1,9 @@
 export default class AccentTypographyBuild {
   constructor(
-    elementSelector,
-    timer,
-    classForActivate,
-    property
+      elementSelector,
+      timer,
+      classForActivate,
+      property
   ) {
     this._TIME_SPACE = 100;
 
@@ -13,10 +13,10 @@ export default class AccentTypographyBuild {
     this._property = property;
     this._element = document.querySelector(this._elementSelector);
     this._timeOffset = 0;
-    
+
     this.prePareText();
   }
-  
+
   createElement(letter) {
     const span = document.createElement(`span`);
     span.textContent = letter;
@@ -25,12 +25,12 @@ export default class AccentTypographyBuild {
     // this._timeOffset += 40;
     return span;
   }
-  
+
   prePareText() {
     if (!this._element) {
       return;
     }
-    const text = this._element.textContent.trim().split(` `).filter((latter)=>latter !== '');
+    const text = this._element.textContent.trim().split(` `).filter((latter)=>latter !== ``);
 
     const content = text.reduce((fragmentParent, word) => {
       const wordElement = Array.from(word).reduce((fragment, latter) => {
@@ -47,7 +47,7 @@ export default class AccentTypographyBuild {
     this._element.innerHTML = ``;
     this._element.appendChild(content);
   }
-  
+
   runAnimation() {
     if (!this._element) {
       return;
