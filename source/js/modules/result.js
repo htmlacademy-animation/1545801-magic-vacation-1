@@ -1,11 +1,12 @@
 import Result1 from './result1/result';
+import Result3 from './result3/result';
 
 export default () => {
   const canvases = document.querySelectorAll(`.result-canvas`);
   const canvasResults = {
     result: new Result1(canvases[0]),
-    // result2: new Result1(canvases[1]),
-    // result3: new Result1(canvases[2]),
+    // result2: new Result2(canvases[1]),
+    result3: new Result3(canvases[2]),
   };
   let showResultEls = document.querySelectorAll(`.js-show-result`);
   let results = document.querySelectorAll(`.screen--result`);

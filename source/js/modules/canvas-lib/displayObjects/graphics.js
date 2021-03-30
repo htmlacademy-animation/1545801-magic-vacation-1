@@ -126,12 +126,9 @@ export default class extends DisplayObject {
       const skew = {};
       const position = {};
       const angle = {};
-      // (
+
       position.x = elem.x * parentProps.scaleX + parentProps.x;
       position.y = elem.y * parentProps.scaleY + parentProps.y;
-      // position.x = elem.x + (-elem.width * elem.originX) * parentProps.scaleX + parentProps.x;
-      // position.y = elem.y + (-elem.width * elem.originY) * parentProps.scaleY + parentProps.y;
-
       scale.x = elem.scaleX * parentProps.scaleX;
       scale.y = elem.scaleY * parentProps.scaleY;
       angle.degrees = elem.angle + parentProps.angle;
@@ -148,7 +145,6 @@ export default class extends DisplayObject {
       }
 
       ctx.save();
-      // ctx.resetTransform();
 
       ctx.globalAlpha = alpha;
       ctx.translate(position.x, position.y);
@@ -161,7 +157,12 @@ export default class extends DisplayObject {
 
       ctx.restore();
 
-
+      if (elem.mask) {
+        ctx.globalCompositeOperation = `destination-in`;
+        elem.mask.parent = elem.parent;
+        elem.mask._render(ctx);
+        ctx.globalCompositeOperation = `source-over`;
+      }
     }
   }
 }
