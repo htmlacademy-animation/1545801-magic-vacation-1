@@ -8,14 +8,11 @@ export default class extends CanvasImage {
       x: airplane.x,
       y: airplane.y,
     };
-    // const maxX = pos.x + 350;
     const maxX = pos.x + canvas.width * 0.3;
     const speed = canvas.width * 0.008;
     const amplitude = 9;
     const update = () => {
-      // time += 0.06;
       time += 0.1;
-      // pos.x += 5;
       pos.x += speed;
       pos.y += Math.sin(time) * amplitude;
       angle = Math.atan2(airplane.y - pos.y, airplane.x - pos.x) * 180 / Math.PI;

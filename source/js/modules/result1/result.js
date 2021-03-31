@@ -91,8 +91,6 @@ export default class extends CanvasLib {
     });
     const airplaneScale = canvas.height * 0.065 / images.airplane.height;
     const airplane = new Airplane(images.airplane, {
-      // scaleX: 0.17,
-      // scaleY: 0.17,
       scaleX: airplaneScale,
       scaleY: airplaneScale,
       x: canvas.width * 0.55,

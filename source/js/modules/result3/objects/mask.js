@@ -22,8 +22,6 @@ export default class extends CanvasGraphics {
     this.lineTo(key.width, key.height * 1.2);
     this.lineTo(key.width * -2, key.height * 1.2);
     this.lineTo(key.width * -2, 0);
-    // this.lineTo(0, key.height);
-    // this.lineTo(key.width * 0.3, key.height * 0.1);
     this.fill();
   }
 }

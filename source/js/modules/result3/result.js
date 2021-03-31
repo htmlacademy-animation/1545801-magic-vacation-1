@@ -32,8 +32,6 @@ export default class extends CanvasLib {
 
   startAnimation() {
     this.showKey(() => {
-      // const ctx = canvas.getContext(`2d`);
-
       this.canvasObjects.crocodile.mask = this.canvasObjects.crocodileMask;
 
       this.showCrocodile(() => {
