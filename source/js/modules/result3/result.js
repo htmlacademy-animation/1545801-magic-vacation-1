@@ -209,7 +209,7 @@ export default class extends CanvasLib {
   }
 
   createLeaf(image, canvas) {
-    const scale = (canvas.height * 0.08) / image.height;
+    const scale = (canvas.height * 0.13) / image.height;
     const props = {
       x: canvas.width * 0.77,
       y: canvas.height * 0.4,
@@ -221,7 +221,7 @@ export default class extends CanvasLib {
   }
 
   createFlamingo(image, canvas) {
-    const scale = (canvas.height * 0.09) / image.height;
+    const scale = (canvas.height * 0.12) / image.height;
     const props = {
       x: canvas.width * 0.32,
       y: canvas.height * 0.45,
@@ -233,7 +233,7 @@ export default class extends CanvasLib {
   }
 
   createSaturn(image, canvas) {
-    const scale = (canvas.height * 0.06) / image.height;
+    const scale = (canvas.height * 0.085) / image.height;
     const props = {
       x: canvas.width * 0.74,
       y: canvas.height * 0.65,
@@ -245,7 +245,7 @@ export default class extends CanvasLib {
   }
 
   createSnowflake(image, canvas) {
-    const scale = (canvas.height * 0.06) / image.height;
+    const scale = (canvas.height * 0.09) / image.height;
     const props = {
       x: canvas.width * 0.65,
       y: canvas.height * 0.52,
@@ -257,7 +257,7 @@ export default class extends CanvasLib {
   }
 
   createWatermelon(image, canvas) {
-    const scale = (canvas.height * 0.05) / image.height;
+    const scale = (canvas.height * 0.08) / image.height;
     const props = {
       x: canvas.width * 0.25,
       y: canvas.height * 0.6,
@@ -269,10 +269,10 @@ export default class extends CanvasLib {
   }
 
   createCrocodile(image, key) {
-    const scale = (key.height * 0.48) / image.height;
+    const scale = (key.getScaledHeight() * 0.6) / image.height;
     const props = {
-      x: key.x + key.width * 0.1,
-      y: key.y + key.height * 0.27,
+      x: key.x + key.getScaledWidth() * 0.1,
+      y: key.y + key.getScaledHeight() * 0.3,
       scaleX: scale,
       scaleY: scale,
     };
@@ -280,7 +280,7 @@ export default class extends CanvasLib {
   }
 
   createKey(image, canvas) {
-    const scale = (canvas.height * 0.25) / image.height;
+    const scale = (canvas.height * 0.35) / image.height;
     const props = {
       x: canvas.width * 0.5,
       y: canvas.height * 0.5,

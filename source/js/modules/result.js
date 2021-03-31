@@ -45,15 +45,16 @@ export default () => {
 
         if (canvasResult) {
           setTimeout(() => {
+            canvasResult.canvas.style.display = `block`;
+
             if (!canvasResult.isInitialized) {
               canvasResult.isInitialized = true;
               canvasResult.init();
             } else {
               canvasResult.startRender();
             }
+            canvasResult.enableResize();
             canvasResult.resizeOnFullScreen();
-            canvasResult.setCanvasToCenter();
-            canvasResult.canvas.style.display = `block`;
           }, 300);
         }
       });

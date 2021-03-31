@@ -9,11 +9,12 @@ export default class extends CanvasGroup {
       // x: this.canvas.width * 0.5 - ice.getScaledWidth() * (0.5 - ice.originX),
       // y: this.canvas.height * 0.6,
     });
+    const seaCalfScale = (ice.getScaledHeight() * 2.5) / images.seaCalf.height;
     const seaCalf = new CanvasImage(images.seaCalf, {
       originX: 0.52,
       originY: 0.65,
-      scaleX: 0.3,
-      scaleY: 0.3,
+      scaleX: seaCalfScale,
+      scaleY: seaCalfScale,
     });
 
     super([ice, seaCalf], props);
