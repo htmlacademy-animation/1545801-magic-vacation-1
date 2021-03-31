@@ -4,9 +4,6 @@ import Key from './objects/key';
 import Item from './objects/item';
 import Drop from './objects/drop';
 import CrocodileMask from './objects/mask';
-import {
-  degreesToRadians
-} from '../canvas-lib/utils';
 
 export default class extends CanvasLib {
   constructor(canvas) {

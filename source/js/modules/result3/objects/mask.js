@@ -1,4 +1,3 @@
-import animate from '../../canvas-lib/animate';
 import CanvasGraphics from '../../canvas-lib/displayObjects/graphics';
 
 export default class extends CanvasGraphics {
