@@ -44,20 +44,11 @@ export default class extends CanvasObject {
       }
 
       ctx.save();
-      // ctx.resetTransform();
 
       ctx.globalAlpha = alpha;
       ctx.translate(position.x, position.y);
       ctx.rotate(angle.radians);
       ctx.scale(scale.x, scale.y);
-      // ctx.setTransform(
-      //     scale.x,
-      //     Math.tan(angle.radians + degreesToRadians(skew.x)) * scale.x,
-      //     -Math.tan(angle.radians + degreesToRadians(skew.y)) * scale.y,
-      //     scale.y,
-      //     position.x,
-      //     position.y
-      // );
 
       ctx.drawImage(
           elem.image,
@@ -67,6 +58,12 @@ export default class extends CanvasObject {
 
       ctx.restore();
 
+      if (elem.mask) {
+        ctx.globalCompositeOperation = `destination-in`;
+        elem.mask.parent = elem.parent;
+        elem.mask._render(ctx);
+        ctx.globalCompositeOperation = `source-over`;
+      }
     }
   }
 }

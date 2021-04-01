@@ -58,6 +58,13 @@ export default class extends CanvasObject {
       children.forEach((child) => {
         child._render(ctx);
       });
+
+      if (elem.mask) {
+        ctx.globalCompositeOperation = `destination-in`;
+        elem.mask.parent = elem.parent;
+        elem.mask._render(ctx);
+        ctx.globalCompositeOperation = `source-over`;
+      }
     }
   }
 }

@@ -45,49 +45,54 @@ export default class extends CanvasLib {
     tree1.show(1000);
     blob.show(200);
     airplane.show(200);
-    airplane.animate(() => {
+    airplane.animate(this.canvas, () => {
       this.updateBlob();
     });
   }
 
-  stopAnimation() {
-
-  }
-
   createObjects(images, canvas) {
+    const lSnowflakeScale = canvas.height * 0.16 / images.snowflake.height;
     const leftSnowflake = new Snowflake(images.snowflake, {
-      scaleX: 0.15,
-      scaleY: 0.15,
+      scaleX: lSnowflakeScale,
+      scaleY: lSnowflakeScale,
       x: canvas.width * 0.3,
       y: canvas.height * 0.5,
     });
+    const rSnowflakeScale = canvas.height * 0.14 / images.snowflake.height;
     const rightSnowflake = new Snowflake(images.snowflake, {
       flipX: true,
-      scaleX: 0.1,
-      scaleY: 0.1,
+      scaleX: rSnowflakeScale,
+      scaleY: rSnowflakeScale,
       x: canvas.width * 0.7,
       y: canvas.height * 0.52,
     });
+    const iceHeight = canvas.height * 1.5;
     const ice = new Ice({
       ice: images.ice,
       seaCalf: images.seaCalf,
     });
+    const t1Scale = canvas.height * 0.14 / images.tree.height;
     const tree1 = new Tree(images.tree, {
+      scaleX: t1Scale,
+      scaleY: t1Scale,
       alpha: 0.8,
       originY: 1,
       x: canvas.width * 0.58,
       y: canvas.height * 0.55,
     });
+    const t2Scale = canvas.height * 0.13 / images.tree.height;
+    const t2x = tree1.x + tree1.getScaledWidth() * 0.9;
     const tree2 = new Tree(images.tree, {
       originY: 1,
-      scaleX: 1.1,
-      scaleY: 0.7,
-      x: canvas.width * 0.64,
-      y: canvas.height * 0.55,
+      scaleX: t2Scale,
+      scaleY: t2Scale * 0.65,
+      x: t2x,
+      y: tree1.y,
     });
+    const airplaneScale = canvas.height * 0.065 / images.airplane.height;
     const airplane = new Airplane(images.airplane, {
-      scaleX: 0.17,
-      scaleY: 0.17,
+      scaleX: airplaneScale,
+      scaleY: airplaneScale,
       x: canvas.width * 0.55,
       y: canvas.height * 0.38,
     });
@@ -95,6 +100,8 @@ export default class extends CanvasLib {
       x: airplane.x - canvas.width * 0.1,
       y: airplane.y - airplane.getScaledHeight() * 0.4,
     });
+
+    ice.scaleToHeight(iceHeight);
 
     this.canvasObjects = {
       leftSnowflake,
@@ -153,12 +160,12 @@ export default class extends CanvasLib {
     ];
     this.addChild(snowflakes[0]);
     snowflakes[0].show(500);
-    snowflakes[0].ciclicMove(2000, 0.1);
+    snowflakes[0].ciclicMove(2000, 0.15);
 
     setTimeout(() => {
       this.addChild(snowflakes[1]);
       snowflakes[1].show(500);
-      snowflakes[1].ciclicMove(2500, -0.1);
+      snowflakes[1].ciclicMove(2500, -0.15);
     }, 200);
   }
 }

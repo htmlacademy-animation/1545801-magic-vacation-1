@@ -93,26 +93,31 @@ export default class {
 
   setCanvasSize(width, height) {
     const canvas = this.canvas;
+    const drp = window.devicePixelRatio || 1;
 
-    canvas.width = width;
-    canvas.height = height;
+    canvas.width = width * drp;
+    canvas.height = height * drp;
     canvas.style.width = width + `px`;
     canvas.style.height = height + `px`;
   }
 
-  setScaleCanvas(size) {
+  setScaleCanvas(scale) {
     const canvas = this.canvas;
 
+    canvas.scale = scale;
     canvas.style.transform = `scale(
-      ${size / canvas.width},
-      ${size / canvas.height}
+      ${scale},
+      ${scale}
     )`;
   }
 
-  setCanvasToCenter(width, height) {
+  setCanvasToCenter() {
     const canvas = this.canvas;
-    const left = (width - canvas.offsetWidth) * 0.5;
-    const top = (height - canvas.offsetHeight) * 0.5;
+    const parent = canvas.parentElement;
+    const scale = canvas.scale;
+    const left = (parent.offsetWidth * 0.5 - (canvas.width * scale) * 0.5);
+    const top = (parent.offsetHeight * 0.5 - (canvas.height * scale) * 0.5);
+
 
     canvas.style.left = `${left}px`;
     canvas.style.top = `${top}px`;
@@ -135,7 +140,12 @@ export default class {
   }
 
   resizeOnFullScreen() {
-    this.setScaleCanvas(Math.max(window.innerWidth, window.innerHeight));
-    this.setCanvasToCenter(window.innerWidth, window.innerHeight);
+    const canvas = this.canvas;
+    const maxSize = window.innerWidth > window.innerHeight ? window.innerWidth : window.innerHeight;
+    const minSize = (maxSize === window.innerWidth ? window.innerHeight : window.innerWidth) * 1.5;
+    const size = maxSize > minSize ? minSize : maxSize;
+    const scale = size / canvas.offsetWidth;
+
+    this.setScaleCanvas(scale);
   }
 }
