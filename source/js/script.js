@@ -30,8 +30,7 @@ fullPageScroll.init();
 scene3d.init();
 scene3d.resize();
 scene3d.loadScenesTextures((textures) => {
-  scene3d.textures = textures;
-  scene3d.isReady = true;
+  scene3d.addTextures(textures);
   scene3d.createScenes();
 
   if (fullPageScroll.activeScreen === 0) {
@@ -45,10 +44,7 @@ scene3d.loadScenesTextures((textures) => {
     scene3d.setScene(slideId);
     scene3d.update();
   }
-
-
 });
-
 
 window.addEventListener(`load`, () => {
   setTimeout(() => {

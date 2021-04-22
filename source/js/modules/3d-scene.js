@@ -1,5 +1,13 @@
 import * as THREE from './three.min';
 
+const scenesSources = {
+  main: `./img/module-5/scenes-textures/scene-0.jpg`,
+  history1: `./img/module-5/scenes-textures/scene-1.jpg`,
+  history2: `./img/module-5/scenes-textures/scene-2.jpg`,
+  history3: `./img/module-5/scenes-textures/scene-3.jpg`,
+  history4: `./img/module-5/scenes-textures/scene-4.jpg`,
+};
+
 export default class {
   constructor(canvas) {
     this.canvas = canvas;
@@ -7,6 +15,11 @@ export default class {
       width: 1500,
       height: 1500,
     };
+    this.textures = {};
+  }
+
+  addTextures(textures) {
+    Object.assign(this.textures, textures);
   }
 
   init() {
@@ -171,15 +184,7 @@ export default class {
   }
 
   loadScenesTextures(endCB) {
-    const sources = {
-      main: `./../../img/module-5/scenes-textures/scene-0.jpg`,
-      history1: `./../../img/module-5/scenes-textures/scene-1.jpg`,
-      history2: `./../../img/module-5/scenes-textures/scene-2.jpg`,
-      history3: `./../../img/module-5/scenes-textures/scene-3.jpg`,
-      history4: `./../../img/module-5/scenes-textures/scene-4.jpg`,
-    };
-
-    this.loadTextures(sources, endCB);
+    this.loadTextures(scenesSources, endCB);
   }
 
   setCanvasSize(width, height) {
