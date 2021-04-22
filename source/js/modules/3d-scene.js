@@ -1,3 +1,5 @@
+import * as THREE from './three.min';
+
 export default class {
   constructor(canvas) {
     this.canvas = canvas;
