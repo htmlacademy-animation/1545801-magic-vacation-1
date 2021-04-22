@@ -1,6 +1,7 @@
 import CanvasImage from './displayObjects/image';
 import CanvasGroup from './displayObjects/group';
 import CanvasGraphics from './displayObjects/graphics';
+import loadImages from './../images-loader';
 
 export default class {
   constructor(canvas) {
@@ -65,29 +66,9 @@ export default class {
   }
 
   loadImages(sources, endCB = () => {}) {
-    const names = Object.keys(sources);
-    const maxCount = names.length;
-    const loadHandler = () => {
-      counter += 1;
-
-      if (counter >= maxCount) {
-        endCB(this.images);
-      }
-    };
-    let counter = 0;
-    let image;
-
-    names.forEach((name) => {
-      image = new Image();
-      image.src = sources[name];
-      this.images[name] = image;
-
-      if (image.complete) {
-        loadHandler();
-
-      } else {
-        image.addEventListener(`load`, loadHandler);
-      }
+    loadImages(sources, (images) => {
+      Object.assign(this.images, images);
+      endCB(this.images);
     });
   }
 
