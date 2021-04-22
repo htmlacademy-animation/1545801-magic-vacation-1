@@ -10120,6 +10120,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _three_min__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_three_min__WEBPACK_IMPORTED_MODULE_0__);
 
 
+const scenesSources = {
+  main: `./img/module-5/scenes-textures/scene-0.jpg`,
+  history1: `./img/module-5/scenes-textures/scene-1.jpg`,
+  history2: `./img/module-5/scenes-textures/scene-2.jpg`,
+  history3: `./img/module-5/scenes-textures/scene-3.jpg`,
+  history4: `./img/module-5/scenes-textures/scene-4.jpg`,
+};
+
 /* harmony default export */ __webpack_exports__["default"] = (class {
   constructor(canvas) {
     this.canvas = canvas;
@@ -10127,6 +10135,11 @@ __webpack_require__.r(__webpack_exports__);
       width: 1500,
       height: 1500,
     };
+    this.textures = {};
+  }
+
+  addTextures(textures) {
+    Object.assign(this.textures, textures);
   }
 
   init() {
@@ -10291,15 +10304,7 @@ __webpack_require__.r(__webpack_exports__);
   }
 
   loadScenesTextures(endCB) {
-    const sources = {
-      main: `./../../img/module-5/scenes-textures/scene-0.jpg`,
-      history1: `./../../img/module-5/scenes-textures/scene-1.jpg`,
-      history2: `./../../img/module-5/scenes-textures/scene-2.jpg`,
-      history3: `./../../img/module-5/scenes-textures/scene-3.jpg`,
-      history4: `./../../img/module-5/scenes-textures/scene-4.jpg`,
-    };
-
-    this.loadTextures(sources, endCB);
+    this.loadTextures(scenesSources, endCB);
   }
 
   setCanvasSize(width, height) {
@@ -13495,8 +13500,7 @@ fullPageScroll.init();
 scene3d.init();
 scene3d.resize();
 scene3d.loadScenesTextures((textures) => {
-  scene3d.textures = textures;
-  scene3d.isReady = true;
+  scene3d.addTextures(textures);
   scene3d.createScenes();
 
   if (fullPageScroll.activeScreen === 0) {
@@ -13510,10 +13514,7 @@ scene3d.loadScenesTextures((textures) => {
     scene3d.setScene(slideId);
     scene3d.update();
   }
-
-
 });
-
 
 window.addEventListener(`load`, () => {
   setTimeout(() => {
