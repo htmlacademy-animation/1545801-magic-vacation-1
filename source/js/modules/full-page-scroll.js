@@ -92,6 +92,7 @@ export default class FullPageScroll {
     window.addEventListener(`popstate`, this.onUrlHashChengedHandler);
 
     this.onUrlHashChanged();
+    this.emitChangeDisplayEvent();
   }
 
   onScroll(evt) {
@@ -155,7 +156,7 @@ export default class FullPageScroll {
       }
       this.bgOverlap.style.height = `100%`;
 
-    } else if (this.bgOverlap.classList.contains(`overlap-active`)) {
+    } else {
       this.bgOverlap.classList.remove(`overlap-active`);
       this.bgOverlap.style.height = `0`;
     }
@@ -187,7 +188,7 @@ export default class FullPageScroll {
       detail: {
         'screenId': this.activeScreen,
         'screenName': this.screenElements[this.activeScreen].id,
-        'screenElement': this.screenElements[this.activeScreen]
+        'screenElement': this.screenElements[this.activeScreen],
       }
     });
 
